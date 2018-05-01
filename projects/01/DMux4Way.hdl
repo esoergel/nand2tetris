@@ -16,5 +16,28 @@ CHIP DMux4Way {
     OUT a, b, c, d;
 
     PARTS:
-    // Put your code here:
+    /**
+    Not(in=sel[0], out=notSel0);
+    Not(in=sel[1], out=notSel1);
+
+    And(a=notSel0, b=notSel1, out=sel00);
+    And(a=in, b=sel00, out=a);
+
+    // sel input is R-L for some reason
+    And(a=notSel0, b=sel[1], out=sel01);
+    And(a=in, b=sel01, out=c);
+
+    And(a=sel[0], b=notSel1, out=sel10);
+    And(a=in, b=sel10, out=b);
+
+    And(a=sel[0], b=sel[1], out=sel11);
+    And(a=in, b=sel11, out=d);
+    */
+
+    DMux(in=in, sel=sel[0], a=a1, b=b1);
+    Not(in=sel[1], out=notSel1);
+    And(a=a1, b=notSel1, out=a);
+    And(a=b1, b=notSel1, out=b);
+    And(a=a1, b=sel[1], out=c);
+    And(a=b1, b=sel[1], out=d);
 }
