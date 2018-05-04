@@ -1,0 +1,22 @@
+// This file is part of www.nand2tetris.org
+// and the book "The Elements of Computing Systems"
+// by Nisan and Schocken, MIT Press.
+// File name: projects/02/ALU.hdl
+
+// if (zx == 1) set x = 0        // 16-bit constant
+// if (nx == 1) set x = !x       // bitwise not
+
+CHIP ZeroAndNegate {
+    IN
+        x[16],
+        zx, // zero the x input?
+        nx; // negate the x input?
+
+    OUT 
+        out[16]; // 16-bit output
+
+    PARTS:
+    Mux16(a=x, b[0..15]=false, sel=zx, out=maybeZero);
+    Not16(in=maybeZero, out=negated);
+    Mux16(a=maybeZero, b=negated, sel=nx, out=out);
+}
