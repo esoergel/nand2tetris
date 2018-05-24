@@ -10,6 +10,7 @@
  * (the loaded value will be emitted to out from the next time step onward).
  */
 
+// TODO make a syntax highlighter for hdl in vim
 CHIP RAM64 {
     IN in[16], load, address[6];
     OUT out[16];
