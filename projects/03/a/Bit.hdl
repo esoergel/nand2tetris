@@ -14,5 +14,9 @@ CHIP Bit {
     OUT out;
 
     PARTS:
-    // Put your code here:
+    Mux(a=t2, b=in, sel=load, out=t1);
+    DFF(in=t1, out=t2);
+    // Is a dummy gate like this the only way to connect an output back to the start?
+    // I did the same thing with the ALU
+    And(a=t2, b=true, out=out);
 }
